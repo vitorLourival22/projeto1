@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Lista de tarefas</h1>
+    <button>Voltar</button><br><input type="text" placeholder="Nova tarefa"><button>Adicionar</button>
+    <ul>
+        {% for todo in todos %}   
+        <li>
+            {{ todo.name}} 
+            <a href="{% url 'show' todo.id %}"><button type="button">abrir</button></a>
+        <button type="submit">Excluir</button>
+    </li>
+        {% endfor %}
+    </ul>
+    <style>
+    
+    
+       
+       
+    </style>
+</body>
+</html>

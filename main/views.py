@@ -1,28 +1,17 @@
+
 from django.http import HttpResponse
 from main.models import Todo
+from django.shortcuts import render
 
 def index(request):
-    todos = Todo.objects.all().first()
-    context = f"""
-        <h1>todo</h1>
-        <ul>
-            <li>
-               {todos}
-             </li>
-        </ul>
-        """
-    return HttpResponse(context)
+    todos = Todo.objects.all()
+    return render (request,'main/index.html', {'todos': todos})
+
+
 def show(request, id):
-    todos = Todo.objects.filter(id=id)
-    items = []
-    if todos:
-        for todo in todos:
-            for item in todo.items.all():
-                items.append(item)
-    return HttpResponse (f"""
-    <ul>
-        <li>
-            {items[0].text}
-        <li/>
-    <ul/>""")
-    ...
+     todo = Todo.objects.filter(id=id).first()
+     itens = todo.items.all()
+     return render(request,'main/show.html', {'items':itens})
+
+
+    
